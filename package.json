@@ -1,0 +1,26 @@
+{
+  "name": "cv",
+  "version": "0.0.1",
+  "description": "CV Repository",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cannibalcow/cv.git"
+  },
+  "author": "Daniel Heldt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cannibalcow/cv/issues"
+  },
+  "homepage": "https://github.com/cannibalcow/cv#readme",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.14.0",
+    "mongodb": "^2.1.18",
+    "mongoose": "^4.5.0"
+  }
+}
