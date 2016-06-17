@@ -17,6 +17,13 @@ router.use(function(req, res, next){
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
 
 app.listen(8080, function() {
   console.log("App running on port 8080");
@@ -38,13 +45,24 @@ router.route("/image/:imageId")
     });
   });
 
-router.route('/cv')
+router.route("/cvs/:id")
+  .get(function(req, res){
+    CV.find({_id: req.params.id }, function(err, cv) {
+        if(err) {
+          res.json(err);
+        } else {
+          res.json({cv: cv});
+        }
+    });
+  });
+
+router.route('/cvs')
   .get(function(req, res){
     CV.find({}, function(err, cvs){
       if(err) {
         res.json(err);
       }
-      res.json(cvs);
+      res.json({cvs: cvs});
     });
   })
   .post(function(req, res){
