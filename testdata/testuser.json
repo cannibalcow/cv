@@ -1,0 +1,33 @@
+{
+    "employee": {
+        "firstname": "Daniel",
+        "lastname": "Heldt",
+        "email": "daniel.heldt@knowit.se",
+        "age": 22,
+        "phone": "070 688 01 78"
+    },
+    "description": {
+      "tagline": "Driven fragil utvecklare utan framförhållning",
+      "text": "Skapar otrygg och dålig stämning med alla. Såväl som verksamhet och team."
+    },
+    "properties": [
+      {
+        "title": "Ölsorter",
+        "items": ["Prips blå", "Tubor grön", "T-Röd"]
+      },
+      {
+        "title": "Språk",
+        "items": ["Java", "Cobol", ".NET"]
+      }
+    ],
+    "previousAssignments": [
+      {
+        "title": "Knowit",
+        "startYear": "2013",
+        "endYear": "-",
+        "role": "Leende systemutvecklare",
+        "description": "Förstörde system på mycket effektiv nivå.",
+        "technology": ["Java", "PHP", "Spring boot"]
+      }
+    ]
+}

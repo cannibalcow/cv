@@ -1,7 +1,7 @@
 var express = require('express');
+var fs = require('fs');
 var bodyParser = require('body-parser');
 var CV = require ('./schema/CV.js');
-
 /** Mongo database **/
 var mongoose = require ('mongoose');
 mongoose.connect('mongodb://localhost/cv');
@@ -22,6 +22,21 @@ app.listen(8080, function() {
   console.log("App running on port 8080");
 });
 
+router.route("/image/:imageId")
+  .get(function(req, res){
+    console.log("Loading image:"+req.params.imageId);
+    var imageId = req.params.imageId;
+    fs.readFile('./images/'.concat(imageId), function(err, img){
+      if(err) {
+        console.log(err);
+        res.writeHead(404, "{'Conetnt-Type': 'image/jpeg'}");
+        res.end("nope");
+      } else {
+        res.writeHead(200, {'Content-Type': 'image/jpeg'});
+        res.end(img, 'binary');
+      }
+    });
+  });
 
 router.route('/cv')
   .get(function(req, res){
@@ -35,6 +50,9 @@ router.route('/cv')
   .post(function(req, res){
     var cv = new CV();
     cv.employee = req.body.employee;
+    cv.description = req.body.description;
+    cv.properties = req.body.properties;
+    cv.previousAssignments = req.body.previousAssignments;
     cv.save(function(err) {
       if(err) res.json(err);
       res.json(cv);
@@ -48,6 +66,9 @@ router.route('/cv')
       }
 
       cv.employee = req.body.employee;
+      cv.description = req.body.description;
+      cv.properties = req.body.properties;
+      cv.previousAssignments = req.body.previousAssignments;
 
       cv.save(function(err) {
         if(err) {
